@@ -115,7 +115,6 @@ Includes playbooks for:
 │   ├── implementation_report.pdf
 │   └── screenshots
 ├── README.md
-└── .gitignore
 ```
 
 ---
