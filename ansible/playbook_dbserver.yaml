@@ -1,0 +1,24 @@
+- name: Configure Database Server
+  hosts: db
+  become: yes
+  tasks:
+    - name: Install MongoDB
+      yum:
+        name: mongodb-org
+        state: present
+
+    - name: Start MongoDB service
+      service:
+        name: mongod
+        state: started
+        enabled: true
+
+    - name: Create a MongoDB user and database
+      shell: >
+        mongo --eval
+        'db.createUser({
+           user: "admin",
+           pwd: "securepassword",
+           roles: [{ role: "readWrite", db: "TravelMemory" }]
+         })'
+        --quiet
